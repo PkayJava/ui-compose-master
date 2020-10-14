@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.angkorteam.uicompose.master">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,6 +26,18 @@
             android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
         <activity
             android:name=".activity.DisplayStyledTextActivity"
+            android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
+        <activity
+            android:name=".activity.VerticalScrollableListActivity"
+            android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
+        <activity
+            android:name=".activity.HorizontalCarouselActivity"
+            android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
+        <activity
+            android:name=".activity.LoadingImagesActivity"
+            android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
+        <activity
+            android:name=".activity.ClickableComponentActivity"
             android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
     </application>
 

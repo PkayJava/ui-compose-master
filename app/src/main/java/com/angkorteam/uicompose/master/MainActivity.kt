@@ -17,8 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.unit.dp
-import com.angkorteam.uicompose.master.activity.DisplayStyledTextActivity
-import com.angkorteam.uicompose.master.activity.DisplayTextActivity
+import com.angkorteam.uicompose.master.activity.*
 import com.angkorteam.uicompose.master.style.Theme
 
 class MainActivity : AppCompatActivity() {
@@ -73,13 +72,21 @@ class MainActivity : AppCompatActivity() {
                     },
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                Item(title = "Vertical Scrollable List")
+                Item(title = "Vertical Scrollable List", onClick = {
+                    startActivity(Intent(context, VerticalScrollableListActivity::class.java))
+                })
                 Spacer(modifier = Modifier.height(16.dp))
-                Item(title = "Horizontal Carousel")
+                Item(title = "Horizontal Carousel", onClick = {
+                    startActivity(Intent(context, HorizontalCarouselActivity::class.java))
+                })
                 Spacer(modifier = Modifier.height(16.dp))
-                Item(title = "Loading Images")
+                Item(title = "Loading Images", onClick = {
+                    startActivity(Intent(context, LoadingImagesActivity::class.java))
+                })
                 Spacer(modifier = Modifier.height(16.dp))
-                Item(title = "Clickable Component")
+                Item(title = "Clickable Component", onClick = {
+                    startActivity(Intent(context, ClickableComponentActivity::class.java))
+                })
                 Spacer(modifier = Modifier.height(16.dp))
                 Item(title = "Drawer App Component")
                 Spacer(modifier = Modifier.height(16.dp))
