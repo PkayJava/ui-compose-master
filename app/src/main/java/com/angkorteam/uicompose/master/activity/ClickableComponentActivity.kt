@@ -116,7 +116,8 @@ class ClickableComponentActivity : AppCompatActivity() {
                             // composable to render text on the screen
                             Text(text = "Ok")
                         }
-                    })
+                    }
+                )
             }
         }
     }

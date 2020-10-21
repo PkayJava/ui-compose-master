@@ -39,6 +39,9 @@
         <activity
             android:name=".activity.ClickableComponentActivity"
             android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
+        <activity
+            android:name=".activity.PaginationActivity"
+            android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
     </application>
 
 </manifest>

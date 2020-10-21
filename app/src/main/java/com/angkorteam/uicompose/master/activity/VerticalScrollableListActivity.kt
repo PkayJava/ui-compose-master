@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.angkorteam.uicompose.master.model.Person
 import com.angkorteam.uicompose.master.style.Theme
-import java.util.*
 
 class VerticalScrollableListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,7 +93,7 @@ class VerticalScrollableListActivity : AppCompatActivity() {
     }
 
     fun getPersonList(): List<Person> {
-        return Arrays.asList(
+        return listOf(
             Person("Grace Hopper", 25),
             Person("Ada Lovelace", 29),
             Person("John Smith", 28),
@@ -111,7 +110,7 @@ class VerticalScrollableListActivity : AppCompatActivity() {
     }
 
     fun getColors(): List<Color> {
-        return Arrays.asList(
+        return listOf(
             Color(0xFFffd7d7.toInt()),
             Color(0xFFffe9d6.toInt()),
             Color(0xFFfffbd0.toInt()),

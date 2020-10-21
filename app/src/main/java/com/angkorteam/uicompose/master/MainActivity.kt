@@ -88,6 +88,10 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(context, ClickableComponentActivity::class.java))
                 })
                 Spacer(modifier = Modifier.height(16.dp))
+                Item(title = "Pagination", onClick = {
+                    startActivity(Intent(context, PaginationActivity::class.java))
+                })
+                Spacer(modifier = Modifier.height(16.dp))
                 Item(title = "Drawer App Component")
                 Spacer(modifier = Modifier.height(16.dp))
                 Item(title = "Buttons Components")
