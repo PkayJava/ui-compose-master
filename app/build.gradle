@@ -1,6 +1,14 @@
+import com.angkorteam.uicompose.buildsrc.Libs
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+kapt {
+    correctErrorTypes = true
+    useBuildCache = true
 }
 
 android {
@@ -13,70 +21,103 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"
+                ]
+            }
+        }
+    }
+
+    packagingOptions {
+        // The Rome library JARs embed some internal utils libraries in nested JARs.
+        // We don't need them so we exclude them in the final package.
+        exclude "/*.jar"
+    }
+
+    signingConfigs {
+        // We use a bundled debug keystore, to allow debug builds from CI to be upgradable
+        debug {
+            storeFile rootProject.file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
     }
 
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
+
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerVersion Libs.Kotlin
+        kotlinCompilerExtensionVersion Libs.AndroidX.Compose
+    }
+
     kotlinOptions {
         jvmTarget = '1.8'
         useIR = true
     }
-    buildFeatures {
-        compose true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion '1.4.10'
-    }
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$Libs.Kotlin"
+    implementation "androidx.core:core-ktx:$Libs.AndroidX.Core"
+    implementation "androidx.appcompat:appcompat:$Libs.AndroidX.AppCompat"
+    implementation "com.google.android.material:material:$Libs.Android.Material"
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation "androidx.ui:ui-tooling:$Libs.AndroidX.Compose"
+    implementation "androidx.ui:ui-test:$Libs.AndroidX.Compose"
 
-    implementation "androidx.ui:ui-tooling:$compose_version"
-    implementation "androidx.ui:ui-test:$compose_version"
+    implementation "androidx.compose.ui:ui:$Libs.AndroidX.Compose"
 
-    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.animation:animation:$Libs.AndroidX.Compose"
 
-    implementation "androidx.compose.animation:animation:$compose_version"
+    implementation "androidx.compose.foundation:foundation:$Libs.AndroidX.Compose"
+    implementation "androidx.compose.foundation:foundation-layout:$Libs.AndroidX.Compose"
+    implementation "androidx.compose.foundation:foundation-text:$Libs.AndroidX.Compose"
 
-    implementation "androidx.compose.foundation:foundation:$compose_version"
-    implementation "androidx.compose.foundation:foundation-layout:$compose_version"
-    implementation "androidx.compose.foundation:foundation-text:$compose_version"
-
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.material:material-icons-core:$compose_version"
-    implementation "androidx.compose.material:material-icons-extended:$compose_version"
+    implementation "androidx.compose.material:material:$Libs.AndroidX.Compose"
+    implementation "androidx.compose.material:material-icons-core:$Libs.AndroidX.Compose"
+    implementation "androidx.compose.material:material-icons-extended:$Libs.AndroidX.Compose"
 
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-beta01"
-    implementation "androidx.compose.runtime:runtime:$compose_version"
-    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+    implementation "androidx.compose.runtime:runtime:$Libs.AndroidX.Compose"
+    implementation "androidx.compose.runtime:runtime-livedata:$Libs.AndroidX.Compose"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
 
-    implementation "androidx.compose.compiler:compiler:$compose_version"
+    implementation "androidx.compose.compiler:compiler:$Libs.AndroidX.Compose"
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.10"
     implementation "androidx.core:core-ktx:1.3.2"
 
-    implementation "androidx.ui:ui-tooling:$compose_version"
+    implementation "androidx.ui:ui-tooling:$Libs.AndroidX.Compose"
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-beta01'
-    testImplementation 'junit:junit:4.13'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
@@ -89,4 +130,11 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.11.0'
+
+    // kapt "androidx.room:room-compiler:$Libs.AndroidX.Room"
+
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$Libs.jdkDesugar"
 }

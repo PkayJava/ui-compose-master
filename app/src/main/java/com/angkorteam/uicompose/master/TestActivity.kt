@@ -11,18 +11,35 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
 import com.angkorteam.uicompose.master.activity.*
+import com.angkorteam.uicompose.master.model.TestViewModel
 import com.angkorteam.uicompose.master.style.Theme
 
-class MainActivity : AppCompatActivity() {
+class TestActivity : AppCompatActivity() {
+
+    private lateinit var viewmodel: TestViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+//        val retrofit = Retrofit.Builder()
+//            .baseUrl("http://localhost")
+//            .addConverterFactory(MoshiConverterFactory.create())
+//            .build()
+//
+//        val service = retrofit.create(Service::class.java)
+
+        this.viewmodel = ViewModelProvider(this).get(TestViewModel::class.java)
+
         setContent {
             val darkTheme: Boolean = isSystemInDarkTheme()
             val colors = if (darkTheme) {
@@ -45,11 +62,12 @@ class MainActivity : AppCompatActivity() {
 
     @Composable
     fun Content() {
+        val pp by this.viewmodel.test().observeAsState()
         Scaffold(
             topBar = {
                 TopAppBar(title = {
                     Text(
-                        text = "UI Compose Master",
+                        text = "UI Compose Master $pp",
                         style = MaterialTheme.typography.h6.copy(color = Color.White),
                     )
                 })
@@ -57,6 +75,13 @@ class MainActivity : AppCompatActivity() {
         ) {
             var context = ContextAmbient.current
             ScrollableColumn() {
+                Spacer(modifier = Modifier.height(16.dp))
+                Item(
+                    title = "State Management",
+                    onClick = {
+                        startActivity(Intent(context, StateManagementActivity::class.java))
+                    },
+                )
                 Spacer(modifier = Modifier.height(16.dp))
                 Item(
                     title = "Display Text",
