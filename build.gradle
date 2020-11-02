@@ -8,7 +8,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.2.0-alpha14"
+        classpath 'com.android.tools.build:gradle:4.2.0-alpha15'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$Libs.Kotlin"
     }
 }
@@ -41,7 +41,7 @@ subprojects {
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
         kotlinOptions {
             // Treat all Kotlin warnings as errors
-            allWarningsAsErrors = true
+            // allWarningsAsErrors = true
 
             freeCompilerArgs += '-Xopt-in=kotlin.RequiresOptIn'
 

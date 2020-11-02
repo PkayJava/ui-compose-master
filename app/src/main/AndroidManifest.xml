@@ -14,7 +14,7 @@
         android:theme="@style/Theme.UIComposeMaster"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".HistoryActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.UIComposeMaster.NoActionBar">
             <intent-filter>
@@ -23,30 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.StateManagementActivity"
-            android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
-        <activity
-            android:name=".activity.DisplayTextActivity"
-            android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
-        <activity
-            android:name=".activity.DisplayStyledTextActivity"
-            android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
-        <activity
-            android:name=".activity.VerticalScrollableListActivity"
-            android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
-        <activity
-            android:name=".activity.HorizontalCarouselActivity"
-            android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
-        <activity
-            android:name=".activity.LoadingImagesActivity"
-            android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
-        <activity
-            android:name=".activity.ClickableComponentActivity"
-            android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
-        <activity
-            android:name=".activity.PaginationActivity"
-            android:theme="@style/Theme.UIComposeMaster.NoActionBar" />
+
     </application>
 
 </manifest>

@@ -1,22 +1,19 @@
-package com.angkorteam.uicompose.master
+package com.angkorteam.uicompose.master.screen
 
 import android.content.res.Configuration
-import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import com.angkorteam.uicompose.master.R
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
+import androidx.compose.material.Icon
 import androidx.compose.material.ListItem
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
@@ -24,27 +21,26 @@ import androidx.ui.tooling.preview.Devices
 import androidx.ui.tooling.preview.Preview
 import com.angkorteam.uicompose.master.style.Gray600
 import com.angkorteam.uicompose.master.style.Gray900
-import com.angkorteam.uicompose.master.widget.frmkApp
-import com.angkorteam.uicompose.master.widget.frmkScaffold
 
-class SubscriptionActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            frmkApp {
-                frmkScaffold(title = "Subscriptions") {
-                    subscriptionBodyContent(it)
-                }
-            }
-        }
+@Preview(
+    backgroundColor = 0xFFFFFF,
+    device = Devices.PIXEL_4_XL,
+    showBackground = true,
+    name = "Subscription",
+    fontScale = 1f,
+    uiMode = Configuration.UI_MODE_TYPE_NORMAL
+)
+@Composable
+fun subscriptionBodyContentPreview() {
+    Box(modifier = Modifier.background(color = Color.Gray900) then Modifier.width(320.dp)) {
+        subscriptionBodyContent()
     }
 
 }
 
 @Composable
-fun subscriptionBodyContent(padding: PaddingValues) {
-    Log.i("THREAD", padding.top.toString())
+fun subscriptionBodyContent() {
     Column(modifier = Modifier.padding(5.dp)) {
         Text(text = "Channel Groups", style = MaterialTheme.typography.h5, color = Color.White)
         Spacer(modifier = Modifier.size(5.dp))
@@ -150,27 +146,4 @@ fun subscriptionBodyContent(padding: PaddingValues) {
             )
         }
     }
-}
-
-@Preview(
-    backgroundColor = 0xFFFFFF,
-    device = Devices.PIXEL_4_XL,
-    showBackground = true,
-    name = "Subscription",
-    fontScale = 1f,
-    uiMode = Configuration.UI_MODE_TYPE_NORMAL
-)
-@Composable
-fun subscriptionBodyContentPreview() {
-    Box(modifier = Modifier.background(color = Color.Gray900) then Modifier.width(320.dp)) {
-        subscriptionBodyContent(
-            padding = PaddingValues(
-                start = 10.dp,
-                bottom = 10.dp,
-                end = 10.dp,
-                top = 10.dp
-            )
-        )
-    }
-
 }

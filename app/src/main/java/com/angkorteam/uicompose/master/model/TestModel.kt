@@ -1,7 +1,9 @@
 package com.angkorteam.uicompose.master.model
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class TestModel(
     @Json(name = "_id") var id: String? = null,
     @Json(name = "index") var index: Int? = null,
@@ -25,9 +27,4 @@ data class TestModel(
     @Json(name = "friends") var friends: List<FriendModel>? = null,
     @Json(name = "greeting") var greeting: String? = null,
     @Json(name = "favoriteFruit") var favoriteFruit: String? = null,
-)
-
-data class FriendModel(
-    @Json(name = "id") var id: Int? = null,
-    @Json(name = "name") var name: String? = null,
 )
