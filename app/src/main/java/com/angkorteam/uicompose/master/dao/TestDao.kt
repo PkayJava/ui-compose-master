@@ -11,7 +11,7 @@ import com.angkorteam.uicompose.master.entity.TestEntity
 interface TestDao {
 
     @Query("SELECT * FROM tbl_test ORDER BY name ASC")
-    fun getAlphabetizedWords(): PagingSource<String, TestEntity>
+    fun getAlphabetizedWords(): PagingSource<Int, TestEntity>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(test: TestEntity)

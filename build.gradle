@@ -1,59 +1,34 @@
-import com.angkorteam.uicompose.buildsrc.Libs
-import com.angkorteam.uicompose.buildsrc.Versions
-
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    ext {
+        compose_version = '1.0.0-alpha07'
+        room_version = "2.3.0-alpha03"
+        nav_version = "2.3.1"
+        paging_version = "3.0.0-alpha09"
+    }
+    ext.kotlin_version = "1.4.10"
     repositories {
         google()
         jcenter()
-        mavenCentral()
+        // mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.0-alpha15'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$Libs.Kotlin"
+        classpath "com.android.tools.build:gradle:4.2.0-alpha16"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
     }
 }
 
-plugins {
-    id 'com.diffplug.spotless' version '5.5.1'
-}
-
-subprojects {
+allprojects {
     repositories {
         google()
         jcenter()
-        mavenCentral()
-
-        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        // mavenCentral()
     }
+}
 
-    apply plugin: 'com.diffplug.spotless'
-    spotless {
-        kotlin {
-            target '**/*.kt'
-            targetExclude("$buildDir/**/*.kt")
-            targetExclude('bin/**/*.kt')
-
-            ktlint(Versions.ktlint)
-            licenseHeaderFile rootProject.file('spotless/copyright.kt')
-        }
-    }
-
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
-        kotlinOptions {
-            // Treat all Kotlin warnings as errors
-            // allWarningsAsErrors = true
-
-            freeCompilerArgs += '-Xopt-in=kotlin.RequiresOptIn'
-
-            // Enable experimental coroutines APIs, including Flow
-            freeCompilerArgs += '-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi'
-            freeCompilerArgs += '-Xopt-in=kotlinx.coroutines.FlowPreview'
-            freeCompilerArgs += '-Xopt-in=kotlin.Experimental'
-
-            freeCompilerArgs += "-Xallow-jvm-ir-dependencies"
-
-            // Set JVM target to 1.8
-            jvmTarget = "1.8"
-        }
-    }
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }

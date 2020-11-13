@@ -18,11 +18,11 @@ import okhttp3.Request
 
 
 @ExperimentalPagingApi
-class TestRemoteMediator : RemoteMediator<String, TestEntity>() {
+class TestRemoteMediator : RemoteMediator<Int, TestEntity>() {
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<String, TestEntity>
+        state: PagingState<Int, TestEntity>
     ): MediatorResult {
         // load data from remote and save into sqlite
         Log.i(

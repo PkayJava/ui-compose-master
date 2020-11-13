@@ -3,7 +3,6 @@ package com.angkorteam.uicompose.master.screen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.ExperimentalLazyDsl
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -102,7 +101,6 @@ sealed class Screen(val route: String) {
     object Trending : Screen("Trending") {
 
         @ExperimentalPagingApi
-        @ExperimentalLazyDsl
         @Composable
         override fun Content(
             appContext: AppContext,

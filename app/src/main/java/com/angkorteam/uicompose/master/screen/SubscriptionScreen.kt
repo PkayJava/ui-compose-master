@@ -1,7 +1,7 @@
 package com.angkorteam.uicompose.master.screen
 
 import android.content.res.Configuration
-import androidx.compose.foundation.Text
+import androidx.compose.material.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import com.angkorteam.uicompose.master.R

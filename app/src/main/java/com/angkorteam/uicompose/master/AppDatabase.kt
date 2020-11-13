@@ -12,6 +12,7 @@ import com.angkorteam.uicompose.master.entity.TestEntity
 
 @Database(
     entities = [TagEntity::class, FriendEntity::class, TagFriendEntity::class, TestEntity::class],
+    exportSchema = false,
     version = 3
 )
 abstract class AppDatabase : RoomDatabase() {

@@ -3,15 +3,16 @@ package com.angkorteam.uicompose.master
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.ExperimentalLazyDsl
 import androidx.compose.material.*
-import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
@@ -38,7 +39,6 @@ import com.angkorteam.uicompose.master.style.Theme
 
 class MainActivity : AppCompatActivity() {
 
-    @ExperimentalLazyDsl
     @ExperimentalMaterialApi
     @ExperimentalPagingApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -136,7 +136,6 @@ fun frmkApp(content: @Composable () -> Unit) {
     )
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun frmkScaffold(
     scaffoldState: ScaffoldState?,

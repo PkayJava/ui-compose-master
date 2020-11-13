@@ -1,10 +1,9 @@
 package com.angkorteam.uicompose.master.activity
 
 import android.util.Log
-import androidx.compose.foundation.Text
+import androidx.compose.material.Text
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.ExperimentalLazyDsl
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
@@ -19,6 +18,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import androidx.paging.compose.itemsIndexed
 import com.angkorteam.uicompose.master.client.TestPagingSource
+import com.angkorteam.uicompose.master.entity.TestEntity
 import kotlinx.coroutines.flow.Flow
 
 class MyBackend {
@@ -28,9 +28,8 @@ class MyBackend {
     }
 }
 
-@ExperimentalLazyDsl
 @Composable
-fun PagingBackendSample(pager: Pager<Int, String>) {
+fun PagingBackendSample(pager: Pager<Int, TestEntity>) {
     val lazyPagingItems = pager.flow.collectAsLazyPagingItems()
     Log.i("THREAD", "==================================")
     Log.i("THREAD", "loadState.refresh          " + lazyPagingItems.loadState.refresh.toString())
@@ -88,7 +87,6 @@ fun PagingBackendSample(pager: Pager<Int, String>) {
     }
 }
 
-@ExperimentalLazyDsl
 @Composable
 fun ItemsDemo(flow: Flow<PagingData<String>>) {
     val lazyPagingItems = flow.collectAsLazyPagingItems()
@@ -99,7 +97,6 @@ fun ItemsDemo(flow: Flow<PagingData<String>>) {
     }
 }
 
-@ExperimentalLazyDsl
 @Composable
 fun ItemsIndexedDemo(flow: Flow<PagingData<String>>) {
     val lazyPagingItems = flow.collectAsLazyPagingItems()
