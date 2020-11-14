@@ -9,7 +9,7 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        this.appDatabase = AppDatabase.getDatabase(this)
+        this.appDatabase = AppDatabase.getInstance(this)
     }
 
 }
